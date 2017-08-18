@@ -1,18 +1,22 @@
 # Working with groups in Microsoft Graph
 
-Groups are collections of [users](user.md) and other principals who share access to resources in Microsoft services or in your app. Microsoft Graph provides you with APIs to create and manage a variety of different types of groups and group functionality to suit your scenario needs. All operations in Microsoft Graph on groups require administrator consent.
+Groups are collections of [users](user.md) and other principals who share access to resources in Microsoft services or in your app. Microsoft Graph provides APIs that you can use to create and manage different types of groups and group-related functionality. All  operations on groups in Microsoft Graph require administrator consent.
 
-> **Note**: Groups can only be created through work or school accounts, and are not supported for personal Microsoft accounts.
+> **Note**: You must use a work or school account to create groups. Groups are not supported for personal Microsoft accounts.
 
-| Type              | Use case | groupType | mail-enabled | security-enabled | Creation possible through API? |
+## Types of groups
+
+The following table lists the types of groups that you can access via Microsoft Graph APIs.
+
+| Type              | Used to | groupType | Mail-enabled | Security-enabled | Can be created via APIs? |
 |-------------------|----------|-----------|--------------|------------------|--------------------------------|
-| Office 365 groups | Facilitating user collaboration with shared Microsoft online resources. | ["Unified"] | true | false | yes | [user](user.md) | 
-| Security groups | Controlling user access to in-app resources. | [] | false | true | yes |
-| Mail-enabled security groups | Controlling user access to in-app resources, with a shared group mailbox. | [] | true | true | no |
-| Distribution groups | Distributing mail to the members of the group. It is recommended to use Office 365 groups due to the richer set of resources it provides. | [] | true | false | yes |
+| Office 365 groups | Facilitate user collaboration with shared Microsoft online resources. | ["Unified"] | True | False | Yes | [user](user.md) | 
+| Security groups | Control user access to in-app resources. | [] | False | True | Yes |
+| Mail-enabled security groups | Control user access to in-app resources, with a shared group mailbox. | [] | True | True | No |
+| Distribution groups | Distribute mail to the members of the group. We recommend that you use Office 365 groups instead of distribution groups because they provide a richer set of resources. | [] | True | False | Yes |
 
 ## Office 365 groups in Outlook
-The power of Office 365 groups is in its collaborative nature, perfect for people who work together on a project or a team. They are created with resources that members of the group share including:
+Office 365 groups enable powerful collaboration, and are designed for people who work together on a project or a team. They are created with resources that members of the group share including:
 
 - Outlook conversations
 - Outlook calendar
@@ -22,14 +26,14 @@ The power of Office 365 groups is in its collaborative nature, perfect for peopl
 - Planner
 - Intune device management
 
-Other resources that are created but not accessible through the API include: 
+Other resources that are created but can't be accessed via APIs include: 
 
 - Dynamics CRM
 - Microsoft Social Engagement
 - Microsoft Stream
 - Microsoft StaffHub
 
-### Example of Office 365 group in Outlook
+### Example of an Office 365 group in Outlook
 ```http
 
 {
