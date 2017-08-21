@@ -15,8 +15,8 @@ The following table lists the types of groups that you can access via Microsoft 
 | Mail-enabled security groups | Control user access to in-app resources, with a shared group mailbox. | [] | True | True | No |
 | Distribution groups | Distribute mail to the members of the group. We recommend that you use Office 365 groups instead of distribution groups because they provide a richer set of resources. | [] | True | False | Yes |
 
-## Office 365 groups in Outlook
-Office 365 groups enable powerful collaboration, and are designed for people who work together on a project or a team. They are created with resources that members of the group share including:
+### Office 365 groups in Outlook
+Office 365 groups enable powerful collaboration, and are designed for people who work together on a project or a team. Office 365 groups include resources that members of the group share, including:
 
 - Outlook conversations
 - Outlook calendar
@@ -26,14 +26,15 @@ Office 365 groups enable powerful collaboration, and are designed for people who
 - Planner
 - Intune device management
 
-Other resources that are created but can't be accessed via APIs include: 
+Other resources that apply to Office 365 groups but can't be accessed via APIs include: 
 
 - Dynamics CRM
 - Microsoft Social Engagement
 - Microsoft Stream
 - Microsoft StaffHub
 
-### Example of an Office 365 group in Outlook
+The following is an example of an Office 365 group in Outlook.
+
 ```http
 
 {
@@ -60,14 +61,14 @@ Other resources that are created but can't be accessed via APIs include:
     "visibility": "Public"
 }
 ```
-Learn more about Office 365 groups and the administrator experiences [here](https://support.office.com/en-us/article/Learn-about-Office-365-groups-b565caa1-5c40-40ef-9915-60fdb2d97fa2).
+For more details, see [Learn about Office 365 Groups](https://support.office.com/en-us/article/Learn-about-Office-365-groups-b565caa1-5c40-40ef-9915-60fdb2d97fa2).
 
-## Security groups and mail-enabled security groups
-Security groups are for controlling user access to resources. By checking whether or not a user is a member of a security group, your app can make authorization decisions when that user is trying to access some secure resources in your app. Security groups can have users and other security groups as members.
+### Security groups and mail-enabled security groups
+Security groups are used to control user access to resources. Your app can use security group memberships to make authorization decisions when users try to access secure resources within the app. Security groups can have users and other security groups as members.
 
-Mail-enabled security groups are used in the same way as security groups are, but with the added feature of a shared mailbox for the groups. Mail-enabled security groups can't be created through the API, but other group operations will still work here. Learn more in the [Manage mail-enabled security groups Exchange article](https://technet.microsoft.com/en-us/library/bb123521(v=exchg.160).aspx).
+Mail-enabled security groups are similar to security groups, with the added feature of a shared mailbox. Mail-enabled security groups can't be created through the API, but other group operations work on them. For more details, see [Manage mail-enabled security groups in Exchange](https://technet.microsoft.com/en-us/library/bb123521(v=exchg.160).aspx).
 
-### Example of security group
+The following is an example of a security group.
 
 ```http
 {
@@ -87,8 +88,12 @@ Mail-enabled security groups are used in the same way as security groups are, bu
     "securityEnabled": true
 }
 ```
+### Other types of groups
+
+Office 365 groups in Yammer are used to facilitate user collaboration through Yammer posts. This type of group can be returned through a read request, but their posts can't be accessed through the API. To learn more, see [Yammer developer API docs](https://developer.yammer.com/docs).
+
 ## Dynamic membership 
-All types of groups can have dynamic membership rules which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added to the group and employees who leave the department are automatically removed from the group. This rule can be specified in a "membershipRule" field during group creation as ```"membershipRule": 'user.department -eq "Marketing"'``` GroupType must also include ```"DynamicMembership"```. The following request creates a new Office 365 group for the marketing employees: 
+All types of groups can have dynamic membership rules, which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added and employees who leave the department are automatically removed from the group. This rule can be specified in a "membershipRule" field during group creation as ```"membershipRule": 'user.department -eq "Marketing"'``` GroupType must also include ```"DynamicMembership"```. The following request creates a new Office 365 group for marketing employees. 
 
 ```http
 POST https://graph.microsoft.com/v1.0/groups
@@ -107,17 +112,13 @@ POST https://graph.microsoft.com/v1.0/groups
 }
 ```
 
-Learn more about formulating membershipRules in [advanced rules](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-groups-dynamic-membership-azure-portal).
+For more information, see [Create attribute-based rules for dynamic group membership in Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-groups-dynamic-membership-azure-portal).
 
-> **Note**: Dynamic membership rules requires the tenant to have a license at tier [Azure Active Directory Premium P1](https://azure.microsoft.com/en-us/pricing/details/active-directory/) or greater.
-
-## Other types of groups
-
-Office 365 groups in Yammer are used to facilitate user collaboration through Yammer posts. This type of group can be returned through a read request, but their posts can't be accessed through the API. To learn more, see [Yammer developer API docs](https://developer.yammer.com/docs).
+> **Note**: Dynamic membership rules require the tenant to have a license at tier [Azure Active Directory Premium P1](https://azure.microsoft.com/en-us/pricing/details/active-directory/) or greater.
 
 ## Common use cases
 
-Using Microsoft Graph, you can perform the these common operations and more:
+The following table lists some common use cases for groups.
 
 | **Use cases**		   | **REST resources**	| **See also** |
 |:---------------|:--------|:----------|
@@ -125,6 +126,6 @@ Using Microsoft Graph, you can perform the these common operations and more:
 | Create new groups, get existing groups, update the properties on groups, and delete groups. Currently, only security groups and Outlook groups can be created through the API. | [group](group.md) | [Create new groups](../api/group_post_groups.md) <br/> [List groups](../api/group_list.md) <br/> [Update groups](../api/group_update.md) <br/> [Delete groups](../api/group_delete.md) |
 | **Group membership methods** | | |
 | List the members of a group, and add or remove members. | [user](user.md) <br/> [group](group.md)| [List members](../api/group_list_members.md) <br/> [Add member](../api/group_post_members.md) <br/> [Remove member](../api/group_delete_members.md)|
-| Check if a user is a member of a group, get all the groups the user is a member of. | [user](user.md) <br/> [group](group.md)| [Check member groups](../api/group_checkmembergroups.md) <br/> [Get member groups](../api/group_get_membergroups.md)|
+| Check to determine whether a user is a member of a group, get all the groups the user is a member of. | [user](user.md) <br/> [group](group.md)| [Check member groups](../api/group_checkmembergroups.md) <br/> [Get member groups](../api/group_get_membergroups.md)|
 | List the owners of a group, and add or remove owners. | [user](user.md) <br/> [group](group.md)| [List owners](../api/group_list_members.md) <br/> [Add member](../api/group_post_members.md) <br/> [Remove member](../api/group_delete_members.md)|
 
