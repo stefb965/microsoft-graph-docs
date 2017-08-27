@@ -86,7 +86,9 @@ The following is an example of a security group.
     "preferredLanguage": null,
     "proxyAddresses": [],
     "securityEnabled": true
-}```
+}
+```
+
 ### Other types of groups
 
 Office 365 groups in Yammer are used to facilitate user collaboration through Yammer posts. This type of group can be returned through a read request, but their posts can't be accessed through the API. To learn more, see [Yammer developer API docs](https://developer.yammer.com/docs).
