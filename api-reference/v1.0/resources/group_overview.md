@@ -13,7 +13,7 @@ The following table lists the types of groups that you can access via Microsoft 
 | Office 365 groups | Facilitate user collaboration with shared Microsoft online resources. | ["Unified"] | True | False | Yes | [user](user.md) | 
 | Security groups | Control user access to in-app resources. | [] | False | True | Yes |
 | Mail-enabled security groups | Control user access to in-app resources, with a shared group mailbox. | [] | True | True | No |
-| Distribution groups | Distribute mail to the members of the group. We recommend that you use Office 365 groups instead of distribution groups because they provide a richer set of resources. | [] | True | False | No |
+| Distribution groups | Distribute mail to the members of the group. We recommend that you create Office 365 groups instead of distribution groups because they have richer functionality. | [] | True | False | No |
 
 ### Office 365 groups in Outlook
 Office 365 groups enable powerful collaboration, and are designed for people who work together on a project or a team. Office 365 groups include resources that members of the group share, including:
