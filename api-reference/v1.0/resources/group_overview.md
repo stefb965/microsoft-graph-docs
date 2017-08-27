@@ -13,7 +13,7 @@ The following table lists the types of groups that you can access via Microsoft 
 | Office 365 groups | Facilitate user collaboration with shared Microsoft online resources. | ["Unified"] | True | False | Yes | [user](user.md) | 
 | Security groups | Control user access to in-app resources. | [] | False | True | Yes |
 | Mail-enabled security groups | Control user access to in-app resources, with a shared group mailbox. | [] | True | True | No |
-| Distribution groups | Distribute mail to the members of the group. We recommend that you use Office 365 groups instead of distribution groups because they provide a richer set of resources. | [] | True | False | Yes |
+| Distribution groups | Distribute mail to the members of the group. We recommend that you use Office 365 groups instead of distribution groups because they provide a richer set of resources. | [] | True | False | No |
 
 ### Office 365 groups in Outlook
 Office 365 groups enable powerful collaboration, and are designed for people who work together on a project or a team. Office 365 groups include resources that members of the group share, including:
@@ -93,7 +93,7 @@ The following is an example of a security group.
 Office 365 groups in Yammer are used to facilitate user collaboration through Yammer posts. This type of group can be returned through a read request, but their posts can't be accessed through the API. To learn more, see [Yammer developer API docs](https://developer.yammer.com/docs).
 
 ## Dynamic membership 
-All types of groups can have dynamic membership rules, which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added and employees who leave the department are automatically removed from the group. This rule can be specified in a "membershipRule" field during group creation as ```"membershipRule": 'user.department -eq "Marketing"'``` GroupType must also include ```"DynamicMembership"```. The following request creates a new Office 365 group for marketing employees. 
+All types of groups can have dynamic membership rules, which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added and employees who leave the department are automatically removed from the group. This rule can be specified in the "membershipRule" field during group creation as `"membershipRule": "user.department -eq \"Marketing\""'`. GroupType must also include `"DynamicMembership"`. The following request creates a new Office 365 group for marketing employees. 
 
 ```http
 POST https://graph.microsoft.com/v1.0/groups
@@ -107,7 +107,7 @@ POST https://graph.microsoft.com/v1.0/groups
     "mailEnabled": true,
     "mailNickname": "marketing",
     "securityEnabled": false,
-    "membershipRule": 'user.department -eq "Marketing"',
+    "membershipRule": "user.department -eq \"Marketing\"",
     "membershipRuleProcessingState": "on"
 }
 ```
