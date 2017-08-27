@@ -86,14 +86,13 @@ The following is an example of a security group.
     "preferredLanguage": null,
     "proxyAddresses": [],
     "securityEnabled": true
-}
-```
+}```
 ### Other types of groups
 
 Office 365 groups in Yammer are used to facilitate user collaboration through Yammer posts. This type of group can be returned through a read request, but their posts can't be accessed through the API. To learn more, see [Yammer developer API docs](https://developer.yammer.com/docs).
 
 ## Dynamic membership 
-All types of groups can have dynamic membership rules, which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added and employees who leave the department are automatically removed from the group. This rule can be specified in the "membershipRule" field during group creation as `"membershipRule": "user.department -eq \"Marketing\""'`. GroupType must also include `"DynamicMembership"`. The following request creates a new Office 365 group for marketing employees. 
+All types of groups can have dynamic membership rules, which automatically add or remove members from the group based on user properties. For example, a "Marketing employees" group would include every user with the department property set to "Marketing", so that new marketing employees are automatically added and employees who leave the department are automatically removed from the group. This rule can be specified in the "membershipRule" field during group creation as `"membershipRule": "user.department -eq \"Marketing\""`. GroupType must also include `"DynamicMembership"`. The following request creates a new Office 365 group for marketing employees. 
 
 ```http
 POST https://graph.microsoft.com/v1.0/groups
